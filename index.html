@@ -3,156 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Home Server | Static Page</title>
+    <title>My Project Hub</title>
     <style>
-        /* Modern CSS Reset & Variables */
         :root {
             --primary: #6366f1;
             --bg: #0f172a;
             --card-bg: #1e293b;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
+            --accent: #22d3ee;
+            --success: #10b981;
+            --warning: #f59e0b;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             margin: 0;
             line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* Glassmorphism Navigation */
         nav {
             padding: 1.5rem 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            background: linear-gradient(to right, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Hero Section */
-        header {
-            text-align: center;
-            padding: 100px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            letter-spacing: -0.05rem;
-        }
-
-        p.subtitle {
-            font-size: 1.25rem;
-            color: var(--text-dim);
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            background-color: var(--primary);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s, opacity 0.2s;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-        /* Features Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 40px 10%;
-            margin-bottom: 50px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: border 0.3s;
-        }
-
-        .card:hover {
-            border-color: var(--primary);
-        }
-
-        .card h3 {
-            margin-top: 0;
+            letter-spacing: 1px;
             color: var(--primary);
         }
 
-        /* Footer */
-        footer {
-            margin-top: auto;
+        header {
             text-align: center;
-            padding: 40px;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            nav { padding: 1rem 5%; }
+        h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+        
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 2rem;
         }
+
+        /* Projects Grid */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .status-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .status-done { background: rgba(16, 185, 129, 0.2); color: var(--success); }
+        .status-progress { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+        .status-idea { background: rgba(34, 211, 238, 0.2); color: var(--accent); }
+
+        .project-card h3 { margin: 0 0 10px 0; font-size: 1.4rem; }
+        .project-card p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 20px; }
+
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tech-pill {
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--text-dim);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dim);
+        }
+
+        a { color: var(--primary); text-decoration: none; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">PORTFOLIO</div>
-        <div>
-            <a href="#" style="color: white; text-decoration: none; font-size: 0.9rem;">About</a>
+        <div class="logo">IDEALAB_</div>
+        <div class="nav-links">
+            <a href="#projects">Projects</a>
         </div>
     </nav>
 
     <header>
-        <h1>Self-Hosted & <br><span style="color: var(--primary)">Cloud Powered.</span></h1>
-        <p class="subtitle">This is a sleek static page hosted via GitHub Pages. It's fast, secure, and completely free to maintain.</p>
-        <a href="#contact" class="btn">Get in Touch</a>
+        <h1>Code & <span style="color: var(--primary)">Concepts.</span></h1>
+        <p style="color: var(--text-dim); font-size: 1.2rem;">My personal archive of builds, experiments, and future ideas.</p>
     </header>
 
-    <div class="grid">
-        <div class="card">
-            <h3>Fast Delivery</h3>
-            <p>Served via GitHub's global CDN for lighting fast load times across the globe.</p>
-        </div>
-        <div class="card">
-            <h3>Custom Domain</h3>
-            <p>Running on a personalized domain with full SSL encryption provided by Let's Encrypt.</p>
-        </div>
-        <div class="card">
-            <h3>Zero Cost</h3>
-            <p>No monthly hosting fees, no server maintenance, just pure static performance.</p>
+    <div class="container" id="projects">
+        <h2 class="section-title">Current Projects</h2>
+        
+        <div class="project-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <span class="status-tag status-done">Completed</span>
+                <h3>Personal Site</h3>
+                <p>A high-performance static landing page hosted on GitHub Pages with custom domain integration.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">HTML</span>
+                    <span class="tech-pill">CSS</span>
+                    <span class="tech-pill">GitHub</span>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <span class="status-tag status-progress">In Progress</span>
+                <h3>Home Lab Monitor</h3>
+                <p>A Python script to monitor my local server health and send notifications via Telegram API.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">Python</span>
+                    <span class="tech-pill">Docker</span>
+                    <span class="tech-pill">Linux</span>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <span class="status-tag status-idea">Idea</span>
+                <h3>AI Image Sorter</h3>
+                <p>A tool to automatically organize local photos using machine learning and EXIF data.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">AI/ML</span>
+                    <span class="tech-pill">Node.js</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <footer id="contact">
-        <p>&copy; 2026 Your Name. Built with curiosity.</p>
+    <footer>
+        <p>Built by You &bull; 2026</p>
     </footer>
 
 </body>
